@@ -1,0 +1,30 @@
+# ── Raw data (DGE line lists — do not push) ───────────────────────────────────
+Base_Lunes_*.xlsx
+*ANONIMIZADA*.xlsx
+data/raw/
+
+# Cleaned line-list copies of the raw data (same records as the Excel files)
+outputs/02_cleaned_data_*/
+
+# Excel lock/temp files
+~$*
+
+# ── R / RStudio / Positron ────────────────────────────────────────────────────
+.Rhistory
+.Rapp.history
+.RData
+.RDataTmp
+.Ruserdata
+.Rproj.user/
+.positron/
+*.Rproj.user
+
+# ── macOS ─────────────────────────────────────────────────────────────────────
+.DS_Store
+._*
+.Spotlight-V100
+.Trashes
+
+# ── Editors ───────────────────────────────────────────────────────────────────
+.vscode/
+*.swp
