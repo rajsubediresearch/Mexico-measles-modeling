@@ -1,0 +1,13 @@
+run_id: SB_end0601__JAL__RICH
+analysis: SB_end0601
+state: JAL
+model: RICH
+input: inputs/SB_end0601/JAL_SB_end0601.txt
+options: options_SB_end0601_JAL_RICH
+windowsize: 39
+horizon: 9
+seed: 3023
+elapsed_min: 1.7
+finished: 06-Nov-2026 07:03:58
+toolbox_commit: 2df12d7
+matlab: 26.2.0.3386108 (R2026b)

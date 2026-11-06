@@ -1,0 +1,13 @@
+run_id: SA_realtime__CDMX__GLM
+analysis: SA_realtime
+state: CDMX
+model: GLM
+input: inputs/SA_realtime/CDMX_SA_realtime.txt
+options: options_SA_realtime_CDMX_GLM
+windowsize: 29
+horizon: 8
+seed: 2011
+elapsed_min: 1.4
+finished: 06-Nov-2026 06:38:47
+toolbox_commit: 2df12d7
+matlab: 26.2.0.3386108 (R2026b)

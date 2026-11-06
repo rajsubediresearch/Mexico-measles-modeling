@@ -1,0 +1,13 @@
+run_id: SC_Klow__CDMX__GLM
+analysis: SC_Klow
+state: CDMX
+model: GLM
+input: inputs/SC_Klow/CDMX_SC_Klow.txt
+options: options_SC_Klow_CDMX_GLM
+windowsize: 29
+horizon: 8
+seed: 4011
+elapsed_min: 1.7
+finished: 06-Nov-2026 09:53:17
+toolbox_commit: 2df12d7
+matlab: 26.2.0.3386108 (R2026b)

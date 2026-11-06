@@ -1,0 +1,13 @@
+run_id: main__JAL__GLM
+analysis: main
+state: JAL
+model: GLM
+input: inputs/main/JAL_main.txt
+options: options_main_JAL_GLM
+windowsize: 40
+horizon: 8
+seed: 1021
+elapsed_min: 1.8
+finished: 06-Nov-2026 06:32:34
+toolbox_commit: 2df12d7
+matlab: 26.2.0.3386108 (R2026b)

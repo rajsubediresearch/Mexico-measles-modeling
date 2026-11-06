@@ -1,0 +1,13 @@
+run_id: SA_realtime__JAL__GLM
+analysis: SA_realtime
+state: JAL
+model: GLM
+input: inputs/SA_realtime/JAL_SA_realtime.txt
+options: options_SA_realtime_JAL_GLM
+windowsize: 40
+horizon: 8
+seed: 2021
+elapsed_min: 1.9
+finished: 06-Nov-2026 06:44:50
+toolbox_commit: 2df12d7
+matlab: 26.2.0.3386108 (R2026b)

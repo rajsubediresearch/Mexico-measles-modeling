@@ -28,3 +28,16 @@ outputs/02_cleaned_data_*/
 # ── Editors ───────────────────────────────────────────────────────────────────
 .vscode/
 *.swp
+
+# ── Forecasting ───────────────────────────────────────────────────────────────
+# scratch copy of the toolbox used by run_forecasts.m
+forecasting/work/
+forecasting/_to_delete/
+# large toolbox workspaces (.mat); CSV outputs are kept
+forecasting/runs/**/*.mat
+# toolbox .fig files (large: every bootstrap curve is stored); PNGs are kept
+forecasting/runs/**/toolbox_figures/*.fig
+
+# ── Manuscript drafts (kept locally, not in git) ─────────────────────────────
+/*.docx
+~$*.docx

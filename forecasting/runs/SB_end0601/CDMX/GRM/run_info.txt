@@ -1,0 +1,13 @@
+run_id: SB_end0601__CDMX__GRM
+analysis: SB_end0601
+state: CDMX
+model: GRM
+input: inputs/SB_end0601/CDMX_SB_end0601.txt
+options: options_SB_end0601_CDMX_GRM
+windowsize: 28
+horizon: 9
+seed: 3012
+elapsed_min: 2.1
+finished: 06-Nov-2026 06:53:00
+toolbox_commit: 2df12d7
+matlab: 26.2.0.3386108 (R2026b)

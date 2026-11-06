@@ -1,0 +1,7 @@
+"state","period","weeks","median_of_weekly_medians","max_upper95","weeks_p_above1_gt0.5"
+"CDMX","extended",2,1.07858088262017,2.64266448986545,1
+"CDMX","pre_tournament_5wk",5,0.613396112442025,0.952804833336245,0
+"CDMX","primary",6,1.00043398369013,3.16101000207212,3
+"JAL","extended",2,1.09471255121298,1.64247851544736,2
+"JAL","pre_tournament_5wk",5,0.727511414448048,0.932067850927473,0
+"JAL","primary",6,0.588678558878014,1.00830163995228,0

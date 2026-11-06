@@ -336,7 +336,10 @@ run_week <- function(DATA_FILE, DATE_TAG) {
       cat(sprintf("  %s: no nowcasts, skipped\n", series_name)); next
     }
     cf       <- series_defs[[series_name]]
-    geos     <- sort(unique(now_df$geography))
+    # all geographies with cases, not only those with a nowcast: NobBS fails
+    # when a state has no onsets in the moving window, and such states keep
+    # their observed series (no reporting-delay correction needed)
+    geos     <- states
     all_data <- list()
     for (geo in geos) {
       obs <- make_observed(df_nodiscard, cf, geo)

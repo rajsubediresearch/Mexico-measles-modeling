@@ -1,0 +1,13 @@
+run_id: SA_realtime__JAL__RICH
+analysis: SA_realtime
+state: JAL
+model: RICH
+input: inputs/SA_realtime/JAL_SA_realtime.txt
+options: options_SA_realtime_JAL_RICH
+windowsize: 40
+horizon: 8
+seed: 2023
+elapsed_min: 1.7
+finished: 06-Nov-2026 06:49:31
+toolbox_commit: 2df12d7
+matlab: 26.2.0.3386108 (R2026b)

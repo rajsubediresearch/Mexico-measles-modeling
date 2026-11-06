@@ -1,0 +1,13 @@
+run_id: main__CDMX__GRM
+analysis: main
+state: CDMX
+model: GRM
+input: inputs/main/CDMX_main.txt
+options: options_main_CDMX_GRM
+windowsize: 29
+horizon: 8
+seed: 1012
+elapsed_min: 2.3
+finished: 06-Nov-2026 06:28:55
+toolbox_commit: 2df12d7
+matlab: 26.2.0.3386108 (R2026b)
