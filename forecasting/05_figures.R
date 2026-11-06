@@ -1,7 +1,9 @@
 # 05_figures.R
 # Mexico measles — publication figures (all labels set here; no manual editing)
 #
-#   figures/fig1_states_incidence        weekly incidence, all states (mature release)
+#   figures/ (with titles) and figures/manuscript/ (no in-image titles, for the
+#   journal; captions carry the text):
+#   fig1_states_incidence        weekly incidence, all states (mature release)
 #   figures/fig2_forecast_CDMX           fit + forecast, Mexico City (A: ensemble, full
 #   figures/fig3_forecast_JAL            series; B-E: each model, zoom on forecast window)
 #   figures/fig4_cumulative_excess       observed vs cumulative forecast, all analyses
@@ -66,10 +68,13 @@ theme_pub <- function(base = 11) {
 }
 
 save_fig <- function(p, name, w, h) {
-  ggsave(file.path("figures", paste0(name, ".png")), p, width = w, height = h, dpi = 300)
-  ggsave(file.path("figures", paste0(name, ".pdf")), p, width = w, height = h)
-  cat("  saved figures/", name, " (.png, .pdf)\n", sep = "")
+  ggsave(file.path(OUT_DIR, paste0(name, ".png")), p, width = w, height = h, dpi = 300)
+  ggsave(file.path(OUT_DIR, paste0(name, ".pdf")), p, width = w, height = h)
+  cat("  saved ", OUT_DIR, "/", name, " (.png, .pdf)\n", sep = "")
 }
+# Titles/subtitles inside the image are dropped in manuscript mode (the
+# caption carries them); panel titles and tags are kept.
+ttl <- function(x) if (MS) NULL else x
 
 q <- function(x, p) quantile(x, p, names = FALSE)
 
@@ -89,6 +94,11 @@ read_bands <- function(analysis, state, model) {
     obs_type = ifelse(role == "calibration", "Calibration data",
                       "Observed (evaluation)"))
 }
+
+for (MS in c(FALSE, TRUE)) {
+OUT_DIR <- if (MS) file.path("figures", "manuscript") else "figures"
+dir.create(OUT_DIR, showWarnings = FALSE, recursive = TRUE)
+cat(if (MS) "\n-- Manuscript versions (no in-image titles) --\n" else "-- Annotated versions --\n")
 
 # ══════════════════════════════════════════════════════════════════════════════
 # Figure 1: weekly incidence by state
@@ -135,12 +145,12 @@ p1 <- ggplot(f1, aes(week_start, observed, fill = host)) +
                     labels = c(`TRUE` = "World Cup host jurisdiction",
                                `FALSE` = "Other state"), name = NULL) +
   scale_x_date(date_breaks = "4 months", date_labels = "%b\n%Y") +
-  labs(title = "Weekly confirmed measles cases by state of notification, Mexico, 2025-2026",
-       subtitle = sprintf("Week of rash onset; DGE release of %s. Shading: World Cup matches in Mexico (11 Jun to 5 Jul 2026). Free y-axes.",
-                          format(as.Date(MATURE_RELEASE), "%d %b %Y")),
+  labs(title = ttl("Weekly confirmed measles cases by state of notification, Mexico, 2025-2026"),
+       subtitle = ttl(sprintf("Week of rash onset; DGE release of %s. Shading: World Cup matches in Mexico (11 Jun to 5 Jul 2026). Free y-axes.",
+                          format(as.Date(MATURE_RELEASE), "%d %b %Y"))),
        x = "Week of rash onset", y = "Weekly confirmed cases") +
   theme_pub(10)
-save_fig(p1, "fig1_states_incidence", 15, 15)
+save_fig(p1, "fig1_states_incidence", if (MS) 10 else 15, if (MS) 11 else 15)
 
 # ══════════════════════════════════════════════════════════════════════════════
 # Figures 2-3 — fit and forecast per jurisdiction
@@ -180,10 +190,10 @@ for (st in names(STATE_LABEL)) {
     plot_layout(heights = c(1, 2), guides = "collect") +
     plot_annotation(
       tag_levels = "A",
-      title = sprintf("%s: forecast benchmark from pre-tournament data and observed measles incidence", STATE_LABEL[[st]]),
-      subtitle = paste0("Line: model fit and forecast (median of bootstrap trajectories); bands: 50% and 95% prediction intervals (300 bootstraps, with observation noise).\n",
+      title = ttl(sprintf("%s: forecast benchmark from pre-tournament data and observed measles incidence", STATE_LABEL[[st]])),
+      subtitle = ttl(paste0("Line: model fit and forecast (median of bootstrap trajectories); bands: 50% and 95% prediction intervals (300 bootstraps, with observation noise).\n",
                         "Dashed line: end of calibration (onset week of 8 Jun). Dotted line: end of primary evaluation window (onset week of 20 Jul). Shading: matches hosted in ",
-                        STATE_LABEL[[st]], "."),
+                        STATE_LABEL[[st]], ".")),
       theme = theme(plot.title = element_text(face = "bold", size = 14),
                     legend.position = "bottom"))
   save_fig(p, sprintf("fig%d_forecast_%s", fig_no, st), 13, 12)
@@ -212,8 +222,8 @@ p4 <- ggplot(cx, aes(y = analysis_l, colour = model)) +
   facet_wrap(state_l ~ window_l, scales = "free_x", ncol = 2) +
   scale_colour_manual(values = c(GLM = "#7f8c8d", GRM = "#16a085", RICH = "#8e44ad", ENS = COL_FIT),
                       labels = MODEL_LABEL, breaks = names(MODEL_LABEL), name = NULL) +
-  labs(title = "Observed cumulative cases versus the forecast benchmark",
-       subtitle = "Points and bars: median and 95% prediction interval of cumulative forecast cases. Red line: observed cumulative cases (mature counts).",
+  labs(title = ttl("Observed cumulative cases versus the forecast benchmark"),
+       subtitle = ttl("Points and bars: median and 95% prediction interval of cumulative forecast cases. Red line: observed cumulative cases (mature counts)."),
        x = "Cumulative confirmed cases", y = NULL) +
   theme_pub(11) + guides(colour = guide_legend(nrow = 2))
 save_fig(p4, "fig4_cumulative_excess", 12, 7.5)
@@ -253,8 +263,8 @@ rt_panel <- function(st) {
 }
 pS <- (rt_panel("CDMX") / rt_panel("JAL")) + plot_layout(guides = "collect") +
   plot_annotation(tag_levels = "A",
-    title = "Effective reproduction number before and during the World Cup",
-    subtitle = "Generation interval: gamma, mean 11.7 days, SD 2 days. Bands/bars: 95% intervals. Shading: matches hosted in each jurisdiction.",
+    title = ttl("Effective reproduction number before and during the World Cup"),
+    subtitle = ttl("Generation interval: gamma, mean 11.7 days, SD 2 days. Bands/bars: 95% intervals. Shading: matches hosted in each jurisdiction."),
     theme = theme(plot.title = element_text(face = "bold", size = 14), legend.position = "bottom"))
 save_fig(pS, "figS_rt", 11, 9)
 
@@ -270,11 +280,13 @@ pR <- ggplot(rv, aes(release, observed, colour = format(week_start, "%d %b"))) +
   geom_line() + geom_point(size = 1.6) +
   facet_wrap(~ state_l, scales = "free_y") +
   scale_x_date(breaks = sort(unique(rv$release)), date_labels = "%d %b") +
-  labs(title = "Reported weekly counts by data release",
-       subtitle = "Each line is one onset week; counts rise as delayed reports are added.",
+  labs(title = ttl("Reported weekly counts by data release"),
+       subtitle = ttl("Each line is one onset week; counts rise as delayed reports are added."),
        x = "Data release", y = "Confirmed cases in onset week",
        colour = "Onset week beginning") +
   theme_pub(11) + theme(axis.text.x = element_text(angle = 45, hjust = 1))
 save_fig(pR, "figS_revisions", 12, 5.5)
 
-cat("\nAll figures written to figures/\n")
+}
+
+cat("\nAll figures written to figures/ and figures/manuscript/\n")

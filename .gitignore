@@ -41,3 +41,6 @@ forecasting/runs/**/toolbox_figures/*.fig
 # ── Manuscript drafts (kept locally, not in git) ─────────────────────────────
 /*.docx
 ~$*.docx
+
+# Manuscript drafts (kept in Dropbox, not in git)
+/manuscript
