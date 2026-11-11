@@ -1,4 +1,4 @@
 [submodule "forecasting/toolbox/QuantDiffForecast-Toolbox"]
 	path = forecasting/toolbox/QuantDiffForecast-Toolbox
-	url = https://github.com/rajsubediresearch/QuantDiffForecast-Toolbox.git
+	url = https://github.com/gchowell/QuantDiffForecast-Toolbox.git
 	ignore = untracked

@@ -6,7 +6,8 @@
 % runs never overwrite each other. Then builds an equal-weight linear-pool
 % ensemble of GLM, GRM and RICH for each analysis x state (runs/.../ENS/).
 %
-% The toolbox is used unmodified: its forecasting code is copied to work/qdf/
+% The toolbox is used unmodified: its forecasting code (plus the project's
+% toolbox_extras/: GRM, RICH, linear-pool ensemble) is copied to work/qdf/
 % (git-ignored) because it always reads input/ and writes output/ next to
 % itself. The copy is refreshed at the start of every session.
 %
@@ -50,8 +51,8 @@ rmpath(QDF_CODE);                       % never use the submodule copy directly
 if isfolder(WORK), rmpath(WORK); rmdir(WORK, 's'); end
 mkdir(WORK); mkdir(fullfile(WORK, 'input')); mkdir(fullfile(WORK, 'output'));
 copyfile(fullfile(QDF_CODE, '*.m'), WORK);
+copyfile(fullfile(PROJ, 'toolbox_extras', '*.m'), WORK);   % GRM, RICH, linear-pool ensemble (not in upstream)
 addpath(WORK, '-begin');
-addpath(QDF_ROOT);                      % getensemble_linearpool_from_curves.m
 
 [~, sha] = system(sprintf('git -C "%s" rev-parse --short HEAD', QDF_ROOT));
 sha = strtrim(sha);

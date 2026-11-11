@@ -7,7 +7,7 @@ options: options_SB_end0601_CDMX_RICH
 windowsize: 28
 horizon: 9
 seed: 3013
-elapsed_min: 1.9
-finished: 06-Nov-2026 06:54:57
-toolbox_commit: 2df12d7
+elapsed_min: 2.0
+finished: 11-Nov-2026 12:10:47
+toolbox_commit: fcd7599
 matlab: 26.2.0.3386108 (R2026b)

@@ -1,7 +1,7 @@
 # Forecast benchmark: measles during the FIFA World Cup 2026 (Mexico City, Jalisco)
 
 Phenomenological growth models (GLM, GRM, Richards) fitted with the
-[QuantDiffForecast toolbox](https://github.com/rajsubediresearch/QuantDiffForecast-Toolbox)
+[QuantDiffForecast toolbox](https://github.com/gchowell/QuantDiffForecast-Toolbox)
 to weekly confirmed measles cases up to the onset week containing the opening
 match. Their forecasts give the incidence expected had the pre-tournament
 trajectory continued, and observed counts are compared against them.
@@ -60,18 +60,20 @@ Run everything from this `forecasting/` folder.
 
 ## Toolbox
 
-The toolbox is a git submodule pinned to a commit of the fork, so every
-result can be traced to the exact code version (recorded in each
-`run_info.txt`). After cloning this repository:
+The toolbox is the upstream [QuantDiffForecast repository](https://github.com/gchowell/QuantDiffForecast-Toolbox),
+included as a git submodule pinned to a specific commit, so every result can be traced
+to the exact code version (recorded in each `run_info.txt`). After cloning this repository:
 
 ```bash
 git submodule update --init
 ```
 
-`run_forecasts.m` copies the toolbox code into `work/qdf/` (git-ignored) and
-runs it from there, because the toolbox always reads `input/` and writes
-`output/` next to its own files and most output file names omit the dataset.
-The submodule itself is never modified.
+Upstream ships the generalised logistic model but not the Richards-type models or the
+curve-based ensemble used here; those three files live in `toolbox_extras/` and are
+added to the toolbox working copy at run time. `run_forecasts.m` copies the toolbox code
+and the extras into `work/qdf/` (git-ignored) and runs from there, because the toolbox
+always reads `input/` and writes `output/` next to its own files and most output file
+names omit the dataset. The submodule itself is never modified.
 
 ## Folder map
 
@@ -84,5 +86,6 @@ manifest.csv        list of MATLAB runs
 runs/               toolbox outputs, bootstrap curves, run_info.txt per run
 tables/             evaluation tables
 figures/            publication figures
-toolbox/            QuantDiffForecast-Toolbox (submodule)
+toolbox/            QuantDiffForecast-Toolbox (submodule, upstream)
+toolbox_extras/     GRM.m, RICH.m, linear-pool ensemble (not in upstream)
 ```

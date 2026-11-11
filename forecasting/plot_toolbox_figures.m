@@ -38,6 +38,7 @@ rmpath(QDF_CODE);
 if isfolder(WORK), rmpath(WORK); rmdir(WORK, 's'); end
 mkdir(WORK); mkdir(fullfile(WORK, 'input')); mkdir(fullfile(WORK, 'output'));
 copyfile(fullfile(QDF_CODE, '*.m'), WORK);
+copyfile(fullfile(PROJ, 'toolbox_extras', '*.m'), WORK);   % GRM, RICH, linear-pool ensemble (not in upstream)
 addpath(WORK, '-begin');
 
 M = readtable(fullfile(PROJ, 'manifest.csv'), 'TextType', 'string', 'Delimiter', ',');

@@ -7,7 +7,7 @@ options: options_main_CDMX_GLM
 windowsize: 29
 horizon: 8
 seed: 1011
-elapsed_min: 1.4
-finished: 06-Nov-2026 06:26:37
-toolbox_commit: 2df12d7
+elapsed_min: 1.3
+finished: 11-Nov-2026 11:35:54
+toolbox_commit: fcd7599
 matlab: 26.2.0.3386108 (R2026b)
