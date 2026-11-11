@@ -233,7 +233,7 @@ save_fig(p4, "fig4_cumulative_excess", 12, 7.5)
 # ══════════════════════════════════════════════════════════════════════════════
 cat("Figure S (Rt)\n")
 rtm <- read.csv("tables/rt_model.csv") %>% mutate(week_start = as.Date(week_start)) %>%
-  filter(analysis == "main", model == "ENS")
+  filter(analysis == "main", model == "RICH")   # Richards: featured model, matches text and Table S9
 rtd <- read.csv("tables/rt_data.csv") %>% mutate(week_start = as.Date(week_start))
 RT_FROM <- as.Date("2026-01-05")
 
@@ -247,7 +247,7 @@ rt_panel <- function(st) {
     geom_ribbon(data = filter(rtm, state == st, week_start >= RT_FROM),
                 aes(week_start, ymin = lower95, ymax = upper95), fill = COL_FIT, alpha = .2) +
     geom_line(data = filter(rtm, state == st, week_start >= RT_FROM),
-              aes(week_start, median, linetype = "Model-based (ensemble fit; projection after calibration)"),
+              aes(week_start, median, linetype = "Model-based (Richards fit; projection after calibration)"),
               colour = COL_FIT, linewidth = .8) +
     geom_pointrange(data = filter(rtd, state == st, week_start >= RT_FROM),
                     aes(week_start, median, ymin = lower95, ymax = upper95,
