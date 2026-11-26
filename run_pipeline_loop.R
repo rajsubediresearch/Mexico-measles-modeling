@@ -19,7 +19,7 @@
 
 # ══════════════════════════════════════════════════════════════════════════════
 # SETTINGS
-BASE_DIR     <- "/Users/rajsubedi/Documents/Mexico_Measles"
+BASE_DIR     <- "/Volumes/fast/projects/Mexico_Measles"
 WEEKS_TO_RUN <- NULL   # NULL = all files found; or e.g. c("2026-09-14")
 # ══════════════════════════════════════════════════════════════════════════════
 
